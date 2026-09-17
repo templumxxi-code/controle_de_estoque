@@ -1,0 +1,43 @@
+# Segredos
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Uploads locais e temporários
+storage/uploads/
+uploads/
+temp/
+tmp/
+
+# Banco e backups locais
+*.db
+backups/
+*.sql
+*.dump
+*.bak
+!database/
+!database/**/*.sql
+
+# Sistema e cache
+.DS_Store
+Thumbs.db
+.cache/
