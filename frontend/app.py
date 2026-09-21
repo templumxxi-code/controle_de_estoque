@@ -17,7 +17,19 @@ st.set_page_config(page_title="Pumphouseup | Gestão", page_icon=LOCAL_LOGO, lay
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;600;700;800&display=swap');
-:root { --red:#f04438; --ink:#111214; --paper:#f4f4f2; --line:#deded9; }
+:root {
+    --primary:#f2d464;
+    --primary-strong:#f0c843;
+    --primary-soft:rgba(242,212,100,.18);
+    --ink:#0b0d10;
+    --ink-soft:#171b20;
+    --paper:#efefe9;
+    --line:#d9d5c7;
+    --panel:#f8f7f3;
+    --muted:#696b6d;
+    --text:#17191d;
+    --white:#ffffff;
+}
 html, body, [class*="css"] { font-family: 'Manrope', sans-serif; }
 html, body, #root, .stApp { min-width:0; overflow-x:hidden; }
 .stApp { background: var(--paper); }
@@ -25,10 +37,10 @@ header, header[data-testid="stHeader"] { display:none !important; }
 section[data-testid="stSidebar"] { background:var(--ink); }
 section[data-testid="stSidebar"] * { color:#fff; }
 h1,h2,h3 { font-family:'Barlow Condensed', sans-serif; letter-spacing:0; text-transform:uppercase; }
-.metric-card { background:#fff; border:1px solid var(--line); border-left:4px solid var(--red); padding:18px; min-height:112px; }
+.theme-marker { display:none; }
+.metric-card { background:#fff; border:1px solid var(--line); border-left:4px solid var(--primary); padding:18px; min-height:112px; }
 .metric-label { color:#777; font-size:.78rem; text-transform:uppercase; font-weight:700; }
 .metric-value { color:var(--ink); font-size:1.75rem; font-weight:800; margin-top:8px; }
-.theme-marker { display:none; }
 .st-key-login-shell, .st-key-internal-shell { min-height:100vh; }
 .st-key-internal-shell { background:var(--app-bg, #f4f4f2); color:var(--app-text, #171a21); }
 .st-key-internal-shell.theme-dark { --app-bg:#080a0d; --app-surface:#101318; --app-surface-2:#15191f; --app-border:rgba(255,255,255,.09); --app-text:#f5f7fa; --app-muted:#9aa1ac; }
@@ -36,8 +48,8 @@ h1,h2,h3 { font-family:'Barlow Condensed', sans-serif; letter-spacing:0; text-tr
 .st-key-internal-shell { box-sizing:border-box; min-width:0; width:100%; }
 .st-key-internal-shell section[data-testid="stMain"] .main .block-container,
 .stApp section[data-testid="stMain"] .main .block-container { box-sizing:border-box; margin:0 auto; max-width:1500px; min-width:0; padding:76px clamp(18px, 3vw, 48px) 42px; width:100%; }
-.stApp section[data-testid="stSidebar"] { box-sizing:border-box; min-width:248px; width:248px; }
-.stApp section[data-testid="stSidebar"] > div:first-child { width:248px; }
+.stApp section[data-testid="stSidebar"] { box-sizing:border-box; min-width:244px; width:244px; }
+.stApp section[data-testid="stSidebar"] > div:first-child { width:244px; }
 .stApp section[data-testid="stSidebar"] [data-testid="stSidebarContent"] { box-sizing:border-box; min-width:0; overflow-x:hidden; padding:18px 14px 22px; }
 .st-key-login-shell { background:#080a0d; color:#f5f7fa; }
 .st-key-login-shell header { display:none; }
@@ -48,11 +60,11 @@ h1,h2,h3 { font-family:'Barlow Condensed', sans-serif; letter-spacing:0; text-tr
 .st-key-login-shell [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] { padding:0; }
 .st-key-login-shell [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:first-child { max-width:650px; }
 .st-key-login-shell [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:last-child { max-width:480px; }
-.st-key-login-shell [data-testid="stColumn"] { position:relative; overflow:hidden; background:rgba(16,19,24,.94); border:1px solid rgba(255,255,255,.09); border-radius:18px; box-shadow:0 26px 80px rgba(0,0,0,.38), 0 0 70px rgba(240,68,56,.07); padding:42px clamp(28px, 4vw, 48px) 30px !important; }
+.st-key-login-shell [data-testid="stColumn"] { position:relative; overflow:hidden; background:rgba(16,19,24,.94); border:1px solid rgba(255,255,255,.09); border-radius:18px; box-shadow:0 26px 80px rgba(0,0,0,.38), 0 0 70px rgba(242,212,100,.07); padding:42px clamp(28px, 4vw, 48px) 30px !important; }
 .st-key-login-shell [data-testid="stColumn"] h2 { color:#f5f7fa; font-family:'Barlow Condensed', sans-serif; font-size:2rem; letter-spacing:.02em; margin:0; text-transform:uppercase; }
 .st-key-login-shell [data-testid="stColumn"] label { color:#c9ced6 !important; font-size:.75rem !important; font-weight:700 !important; }
 .st-key-login-shell [data-testid="stColumn"] input { background:#11141a !important; color:#fff; }
-.st-key-login-shell [data-testid="stColumn"] div[data-testid="stButton"] button { min-height:48px; background:#d9362c; border:1px solid #f04438; border-radius:8px; color:#fff; }
+.st-key-login-shell [data-testid="stColumn"] div[data-testid="stButton"] button { min-height:48px; background:var(--primary); border:1px solid #f0c843; border-radius:8px; color:#111; }
 .st-key-login-shell [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] > div { min-width:0; }
 .st-key-login-shell img { max-width:100%; }
 .stApp:has(.st-key-login-shell) { background:#080a0d; }
@@ -64,7 +76,7 @@ h1,h2,h3 { font-family:'Barlow Condensed', sans-serif; letter-spacing:0; text-tr
 .stApp:has(.st-key-login-shell) .system-ribbon,
 .system-ribbon { align-items:center; background:#101318; border-bottom:1px solid rgba(255,255,255,.09); box-sizing:border-box; color:#f5f7fa; display:flex; font-size:.66rem; justify-content:space-between; left:0; letter-spacing:.08em; min-height:42px; padding:0 clamp(18px, 4vw, 56px); position:fixed; right:0; text-transform:uppercase; top:0; z-index:1000; }
 .system-ribbon-brand { color:#f5f7fa; }
-.system-ribbon-version { color:#f5f7fa; font-weight:800; }
+.system-ribbon-version { color:var(--primary); font-weight:800; }
 .system-ribbon-author, .system-ribbon-meta { color:#9aa1ac; }
 .stApp:has(.theme-marker) { background:#f5f6f8; }
 .stApp:has(.theme-marker) .system-ribbon { background:#101318; color:#f5f7fa; }
@@ -98,7 +110,7 @@ section[data-testid="stSidebar"] [data-testid="stImage"] img { max-height:220px;
 .stApp:has(.theme-dark-marker) [data-testid="stAlert"] { background:#15191f; border:1px solid rgba(255,255,255,.14); color:#f5f7fa; }
 .stApp:has(.theme-dark-marker) [data-testid="stAlert"] p { color:#f5f7fa !important; }
 .stApp:has(.theme-dark-marker) div.stButton > button:not([kind="primary"]), .stApp:has(.theme-dark-marker) button[data-testid="baseButton-secondary"], .stApp:has(.theme-dark-marker) [data-testid="stDownloadButton"] button { background:#15191f !important; border:1px solid rgba(255,255,255,.16) !important; color:#f5f7fa !important; }
-.stApp:has(.theme-dark-marker) div.stButton > button:not([kind="primary"]):hover, .stApp:has(.theme-dark-marker) button[data-testid="baseButton-secondary"]:hover, .stApp:has(.theme-dark-marker) [data-testid="stDownloadButton"] button:hover { background:#202630 !important; border-color:rgba(240,68,56,.55) !important; color:#fff !important; }
+.stApp:has(.theme-dark-marker) div.stButton > button:not([kind="primary"]):hover, .stApp:has(.theme-dark-marker) button[data-testid="baseButton-secondary"]:hover, .stApp:has(.theme-dark-marker) [data-testid="stDownloadButton"] button:hover { background:#202630 !important; border-color:rgba(242,212,100,.55) !important; color:#fff !important; }
 .stApp:has(.theme-dark-marker) [data-baseweb="select"] *, .stApp:has(.theme-dark-marker) [data-baseweb="popover"] * { color:#f5f7fa !important; }
 .stApp:has(.theme-dark-marker) [data-baseweb="popover"] { background:#15191f; border:1px solid rgba(255,255,255,.14); }
 .stApp:has(.theme-light-marker) { background:#f5f6f8; color:#171a21; }
@@ -114,27 +126,21 @@ section[data-testid="stSidebar"] [data-testid="stImage"] img { max-height:220px;
 .stApp:has(.theme-light-marker) .metric-value, .stApp:has(.theme-light-marker) .empty-state-title { color:#171a21; }
 .stApp:has(.theme-light-marker) .theme-toggle button { background:#fff !important; border:1px solid #dfe3e8 !important; color:#30343b !important; }
 .stApp:has(.theme-dark-marker) section[data-testid="stSidebar"] div.stButton > button,
-.stApp:has(.theme-light-marker) section[data-testid="stSidebar"] div.stButton > button { background:#d9362c !important; border:1px solid #f04438 !important; border-radius:7px; color:#fff !important; min-height:38px; }
+.stApp:has(.theme-light-marker) section[data-testid="stSidebar"] div.stButton > button { background:var(--primary) !important; border:1px solid #f0c843 !important; border-radius:7px; color:#111 !important; min-height:38px; }
 .stApp:has(.theme-dark-marker) section[data-testid="stSidebar"] div.stButton > button:hover,
-.stApp:has(.theme-light-marker) section[data-testid="stSidebar"] div.stButton > button:hover { background:#ef493d !important; border-color:#ff7067 !important; color:#fff !important; }
+.stApp:has(.theme-light-marker) section[data-testid="stSidebar"] div.stButton > button:hover { background:#f6d96a !important; border-color:#f0c843 !important; color:#111 !important; }
 .app-shell.app-shell-internal section[data-testid="stSidebar"] { background:#101318; border-right:1px solid rgba(255,255,255,.08); }
 .app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stImage"] { padding:12px 22px 0; }
-.app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stRadio"] > label { color:#8f98a5 !important; font-size:.65rem !important; font-weight:800 !important; letter-spacing:.12em; text-transform:uppercase; }
-.app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] { gap:4px; }
-.app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"] { min-height:42px; padding:0 12px; border-left:3px solid transparent; border-radius:6px; color:#aeb5c0; }
-.app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"][aria-checked="true"] { background:rgba(240,68,56,.14); border-left-color:#f04438; color:#fff; }
-.app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"] > div:first-child { display:none; }
-.app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"] p { font-size:.8rem; font-weight:700; }
 .page-header { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin:0 0 26px; }
-.page-kicker { color:#f04438; font-size:.68rem; font-weight:800; letter-spacing:.14em; margin:0 0 7px; text-transform:uppercase; }
+.page-kicker { color:var(--primary); font-size:.68rem; font-weight:800; letter-spacing:.14em; margin:0 0 7px; text-transform:uppercase; }
 .page-title { color:var(--app-text, #171a21); font-family:'Barlow Condensed', sans-serif; font-size:clamp(2rem, 3vw, 3.2rem); line-height:1; margin:0; text-transform:uppercase; }
 .page-subtitle { color:var(--app-muted, #69707d); font-size:.84rem; margin:8px 0 0; }
 .topbar { align-items:center; border-bottom:1px solid var(--app-border, #e2e5e9); display:flex; justify-content:space-between; margin-bottom:26px; padding:0 0 18px; }
 .topbar-context { color:var(--app-muted, #69707d); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
 .topbar-user { color:var(--app-text, #171a21); font-size:.78rem; font-weight:800; }
-.topbar-user:before { background:#f04438; border-radius:50%; content:""; display:inline-block; height:8px; margin-right:8px; width:8px; }
+.topbar-user:before { background:var(--primary); border-radius:50%; content:""; display:inline-block; height:8px; margin-right:8px; width:8px; }
 .surface { background:var(--app-surface, #fff); border:1px solid var(--app-border, #e2e5e9); border-radius:10px; padding:22px; }
-.metric-card { background:var(--app-surface, #fff); border:1px solid var(--app-border, #deded9); border-left:3px solid #f04438; border-radius:8px; color:var(--app-text, #171a21); min-height:122px; padding:18px; }
+.metric-card { background:var(--app-surface, #fff); border:1px solid var(--app-border, #deded9); border-left:3px solid var(--primary); border-radius:8px; color:var(--app-text, #171a21); min-height:122px; padding:18px; }
 .metric-label { color:var(--app-muted, #69707d); }
 .metric-value { color:var(--app-text, #171a21); }
 .empty-state { background:var(--app-surface, #fff); border:1px dashed var(--app-border, #e2e5e9); border-radius:10px; padding:52px 24px; text-align:center; }
@@ -145,28 +151,25 @@ section[data-testid="stSidebar"] [data-testid="stImage"] img { max-height:220px;
 .app-shell.app-shell-internal input, .app-shell.app-shell-internal textarea { color:#f5f7fa; }
 .app-shell.app-shell-internal label, .app-shell.app-shell-internal p, .app-shell.app-shell-internal .stMarkdown { color:var(--app-muted); }
 .app-shell.app-shell-internal h1, .app-shell.app-shell-internal h2, .app-shell.app-shell-internal h3 { color:#f5f7fa; }
-.app-shell.app-shell-internal div.stButton > button[kind="primary"] { background:#d9362c; border-color:#f04438; color:#fff; }
+.app-shell.app-shell-internal div.stButton > button[kind="primary"] { background:var(--primary); border-color:#f0c843; color:#111; }
 .app-shell.app-shell-internal header, .app-shell.app-shell-internal header[data-testid="stHeader"] { background:var(--app-bg, #080a0d) !important; border-bottom:1px solid var(--app-border, rgba(255,255,255,.08)); }
 .app-shell.app-shell-internal div.stButton > button:not([kind="primary"]), .app-shell.app-shell-internal button[data-testid="baseButton-secondary"] { background:#15191f !important; border:1px solid rgba(255,255,255,.1) !important; color:#f5f7fa !important; }
-.app-shell.app-shell-internal div.stButton > button:not([kind="primary"]):hover { background:#202630 !important; border-color:rgba(240,68,56,.45) !important; color:#fff !important; }
+.app-shell.app-shell-internal div.stButton > button:not([kind="primary"]):hover { background:#202630 !important; border-color:rgba(242,212,100,.45) !important; color:#fff !important; }
 .app-shell.app-shell-internal section[data-testid="stSidebar"] [data-testid="stRadio"] input[type="radio"] { display:none !important; }
 .app-shell.app-shell-internal .theme-toggle button { align-items:center; background:var(--app-surface-2, #15191f); border:1px solid var(--app-border, rgba(255,255,255,.1)); border-radius:8px; color:var(--app-text, #f5f7fa); display:flex; font-size:1rem; height:38px; justify-content:center; min-width:38px; padding:0; transition:background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease; width:38px; }
-.app-shell.app-shell-internal .theme-toggle button:hover { background:rgba(240,68,56,.12); border-color:rgba(240,68,56,.4); color:#f04438; transform:translateY(-1px); }
+.app-shell.app-shell-internal .theme-toggle button:hover { background:rgba(242,212,100,.12); border-color:rgba(242,212,100,.4); color:var(--primary); transform:translateY(-1px); }
 .app-shell.app-shell-internal section[data-testid="stSidebar"] div.stButton > button { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:7px; color:#f5f7fa; min-height:38px; transition:background-color .2s ease, border-color .2s ease, color .2s ease; }
-.app-shell.app-shell-internal section[data-testid="stSidebar"] div.stButton > button:hover { background:rgba(229,57,53,.12); border-color:rgba(229,57,53,.35); color:#ffb5ae; }
+.app-shell.app-shell-internal section[data-testid="stSidebar"] div.stButton > button:hover { background:rgba(242,212,100,.12); border-color:rgba(242,212,100,.35); color:#fff; }
 .app-shell.app-shell-internal .system-ribbon { background:var(--app-surface, #101318); border-bottom-color:var(--app-border, rgba(255,255,255,.09)); color:var(--app-text, #f5f7fa); }
 .app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] { background:#f9fafb; border-right:1px solid #e2e5e9; }
 .app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] * { color:#30343b; }
-.app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] [data-testid="stRadio"] > label { color:#69707d !important; }
-.app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"] { color:#69707d; }
-.app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"][aria-checked="true"] { background:#fff1f1; color:#171a21; }
 .app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] div.stButton > button { background:#fff; border-color:#dfe3e8; color:#30343b; }
-.app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] div.stButton > button:hover { background:#fff1f1; border-color:rgba(229,57,53,.45); color:#d9362c; }
+.app-shell.app-shell-internal.theme-light section[data-testid="stSidebar"] div.stButton > button:hover { background:rgba(242,212,100,.12); border-color:rgba(242,212,100,.45); color:#111; }
 .app-shell.app-shell-internal.theme-light .system-ribbon { background:#fff; color:#171a21; }
 .app-shell.app-shell-internal.theme-light .system-ribbon-meta, .app-shell.app-shell-internal.theme-light .system-ribbon-author { color:#69707d; }
 .app-shell.app-shell-internal .system-ribbon { align-items:center; background:rgba(10,12,16,.96); border-bottom:1px solid rgba(255,255,255,.09); box-sizing:border-box; color:#f5f7fa; display:flex; font-size:.66rem; justify-content:space-between; left:0; letter-spacing:.08em; min-height:42px; padding:0 clamp(18px, 4vw, 56px); pointer-events:none; position:fixed; right:0; text-transform:uppercase; top:0; z-index:1000; }
 .system-ribbon-brand { align-items:center; display:flex; font-weight:800; gap:10px; }
-.system-ribbon-brand:before { background:#f04438; border-radius:50%; box-shadow:0 0 12px rgba(240,68,56,.55); content:""; height:6px; width:6px; }
+.system-ribbon-brand:before { background:var(--primary); border-radius:50%; box-shadow:0 0 12px rgba(242,212,100,.55); content:""; height:6px; width:6px; }
 .system-ribbon-meta { align-items:center; color:#9aa1ac; display:flex; gap:18px; }
 .system-ribbon-version { color:#f5f7fa; font-weight:800; }
 .system-ribbon-author { color:#9aa1ac; }
@@ -182,18 +185,18 @@ section[data-testid="stSidebar"] [data-testid="stImage"] img { max-height:220px;
 .app-shell.login-shell [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:first-child { max-width:650px; }
 .app-shell.login-shell [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:last-child { max-width:480px; }
 .login-institutional { position:relative; padding:30px 0; }
-.login-institutional:before { position:absolute; z-index:0; top:8%; left:2%; width:230px; height:230px; border-radius:50%; background:rgba(240,68,56,.13); filter:blur(70px); content:""; }
+.login-institutional:before { position:absolute; z-index:0; top:8%; left:2%; width:230px; height:230px; border-radius:50%; background:rgba(242,212,100,.13); filter:blur(70px); content:""; }
 .login-brandline, .login-kicker, .login-title, .login-description, .login-benefits, .login-footnote { position:relative; z-index:1; }
-.login-brandline { color:#f04438; font-size:.7rem; font-weight:800; letter-spacing:.18em; margin:18px 0 0; }
+.login-brandline { color:var(--primary); font-size:.7rem; font-weight:800; letter-spacing:.18em; margin:18px 0 0; }
 .login-kicker { color:#9aa1ac; font-size:.72rem; font-weight:800; letter-spacing:.16em; margin:24px 0 18px; }
 .login-description { color:#9aa1ac; font-size:1rem; line-height:1.7; max-width:590px; margin:0; }
 .login-description-mobile { display:none; }
 .login-benefits { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px 28px; max-width:560px; margin:34px 0 0; }
 .login-benefit { color:#d9dde3; font-size:.82rem; font-weight:600; }
-.login-benefit:before { color:#f04438; content:"✓"; font-weight:800; margin-right:10px; }
+.login-benefit:before { color:var(--primary); content:"✓"; font-weight:800; margin-right:10px; }
 .login-system-foot { color:#626a75; font-size:.7rem; letter-spacing:.08em; margin:56px 0 0; text-transform:uppercase; }
-.app-shell.login-shell [data-testid="stColumn"] { position:relative; overflow:hidden; background:rgba(16,19,24,.94); border:1px solid rgba(255,255,255,.09); border-radius:18px; box-shadow:0 26px 80px rgba(0,0,0,.38), 0 0 70px rgba(240,68,56,.07); padding:42px clamp(28px, 4vw, 48px) 30px !important; }
-.app-shell.login-shell [data-testid="stColumn"]:before { position:absolute; top:0; right:0; left:0; height:2px; background:linear-gradient(90deg, transparent, #f04438, transparent); content:""; }
+.app-shell.login-shell [data-testid="stColumn"] { position:relative; overflow:hidden; background:rgba(16,19,24,.94); border:1px solid rgba(255,255,255,.09); border-radius:18px; box-shadow:0 26px 80px rgba(0,0,0,.38), 0 0 70px rgba(242,212,100,.07); padding:42px clamp(28px, 4vw, 48px) 30px !important; }
+.app-shell.login-shell [data-testid="stColumn"]:before { position:absolute; top:0; right:0; left:0; height:2px; background:linear-gradient(90deg, transparent, var(--primary), transparent); content:""; }
 .app-shell.login-shell [data-testid="stColumn"] h2 { color:#f5f7fa; font-family:'Barlow Condensed', sans-serif; font-size:2rem; letter-spacing:.02em; margin:0; text-transform:uppercase; }
 .login-card-copy { color:#9aa1ac; font-size:.82rem; line-height:1.6; margin:8px 0 22px; }
 .login-secure { color:#7fd49b; font-size:.7rem; font-weight:700; letter-spacing:.08em; margin:0 0 24px; text-transform:uppercase; }
@@ -201,17 +204,46 @@ section[data-testid="stSidebar"] [data-testid="stImage"] img { max-height:220px;
 .app-shell.login-shell [data-testid="stColumn"] label { color:#c9ced6 !important; font-size:.75rem !important; font-weight:700 !important; }
 .app-shell.login-shell [data-testid="stColumn"] div[data-baseweb="input"], .app-shell.login-shell [data-testid="stColumn"] div[data-baseweb="base-input"], .app-shell.login-shell [data-testid="stColumn"] input { background:#11141a !important; border-color:#252a32; border-radius:8px; transition:border-color .2s ease, box-shadow .2s ease; }
 .app-shell.login-shell [data-testid="stColumn"] div[data-testid="stTextInputRootElement"] div[data-baseweb="base-input"] { background:#11141a !important; }
-.app-shell.login-shell [data-testid="stColumn"] div[data-baseweb="input"]:focus-within { border-color:#f04438; box-shadow:0 0 0 3px rgba(240,68,56,.13); }
+.app-shell.login-shell [data-testid="stColumn"] div[data-baseweb="input"]:focus-within { border-color:var(--primary); box-shadow:0 0 0 3px rgba(242,212,100,.13); }
 .app-shell.login-shell [data-testid="stColumn"] input { color:#fff; }
 .app-shell.login-shell [data-testid="stColumn"] input::placeholder { color:#737983; }
-.app-shell.login-shell [data-testid="stColumn"] div[data-testid="stButton"] button { min-height:48px; background:#d9362c; border:1px solid #f04438; border-radius:8px; box-shadow:0 10px 26px rgba(240,68,56,.2); color:#fff; font-size:.78rem; letter-spacing:.06em; transition:background .2s ease, box-shadow .2s ease, transform .2s ease; }
-.app-shell.login-shell [data-testid="stColumn"] div[data-testid="stButton"] button:hover { background:#ef493d; box-shadow:0 14px 32px rgba(240,68,56,.3); transform:translateY(-1px); }
-.app-shell.login-shell [data-testid="stColumn"] [data-testid="stAlert"] { background:rgba(240,68,56,.12); border:1px solid rgba(240,68,56,.4); border-radius:8px; color:#ffb5ae; }
+.app-shell.login-shell [data-testid="stColumn"] div[data-testid="stButton"] button { min-height:48px; background:var(--primary); border:1px solid #f0c843; border-radius:8px; box-shadow:0 10px 26px rgba(242,212,100,.2); color:#111; font-size:.78rem; letter-spacing:.06em; transition:background .2s ease, box-shadow .2s ease, transform .2s ease; }
+.app-shell.login-shell [data-testid="stColumn"] div[data-testid="stButton"] button:hover { background:#f5d972; box-shadow:0 14px 32px rgba(242,212,100,.3); transform:translateY(-1px); }
+.app-shell.login-shell [data-testid="stColumn"] [data-testid="stAlert"] { background:rgba(242,212,100,.12); border:1px solid rgba(242,212,100,.4); border-radius:8px; color:#fdf0b2; }
 .login-card-foot { border-top:1px solid rgba(255,255,255,.08); color:#727985; font-size:.7rem; line-height:1.5; margin-top:26px; padding-top:20px; }
 .topbar-controls { align-items:center; display:flex; gap:10px; justify-content:flex-end; }
 div.stButton > button { border-radius:2px; font-weight:800; }
 #MainMenu, div[data-testid="stMainMenu"], div[data-testid="stToolbar"], div[data-testid="stDecoration"], div[data-testid="stStatusWidget"], footer, .stDeployButton { display:none !important; visibility:hidden !important; }
 button[data-testid="stBaseButton-header"], button[data-testid="stBaseButton-elementToolbar"] { display:none !important; visibility:hidden !important; }
+.sidebar-nav { display:flex; flex-direction:column; gap:8px; margin-top:18px; }
+section[data-testid="stSidebar"] div.stButton > button {
+    width:100%;
+    justify-content:flex-start;
+    background:transparent;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:8px;
+    color:#f4f4f5;
+    font-weight:700;
+    letter-spacing:.02em;
+    min-height:42px;
+    padding:10px 12px;
+    text-align:left;
+}
+section[data-testid="stSidebar"] div.stButton > button:hover {
+    background:rgba(242,212,100,.12);
+    border-color:rgba(242,212,100,.32);
+    color:#fff9d2;
+}
+section[data-testid="stSidebar"] div.stButton > button[kind="primary"] {
+    background:rgba(242,212,100,.14);
+    border-color:rgba(242,212,100,.7);
+    box-shadow:inset 0 0 0 1px rgba(242,212,100,.15);
+    color:var(--primary);
+}
+section[data-testid="stSidebar"] div.stButton > button p {
+    margin:0;
+    text-align:left;
+}
 @media (max-width: 560px) {
     .system-ribbon { font-size:.56rem; min-height:38px; padding:0 14px; }
     .system-ribbon-meta { gap:8px; }
@@ -285,8 +317,26 @@ button[data-testid="stBaseButton-header"], button[data-testid="stBaseButton-elem
 """, unsafe_allow_html=True)
 
 
+def as_float(value: object, default: float = 0.0) -> float:
+    if value in (None, "", "-"):
+        return default
+    if isinstance(value, (int, float, Decimal)):
+        return float(value)
+    text = str(value).strip().replace("R$", "").replace(" ", "")
+    if not text:
+        return default
+    if "," in text and "." in text:
+        text = text.replace(".", "").replace(",", ".")
+    elif "," in text:
+        text = text.replace(",", ".")
+    try:
+        return float(text)
+    except (TypeError, ValueError):
+        return default
+
+
 def money(value: object) -> str:
-    return f"R$ {float(value or 0):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    return f"R$ {as_float(value):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
 DISPLAY_COLUMNS = {
@@ -313,19 +363,47 @@ PAGE_META = {
     "Produtos": ("Produtos", "Cadastre, consulte e gerencie os produtos da loja."),
     "Categorias": ("Categorias", "Organize seu catálogo para encontrar tudo com rapidez."),
     "Estoque": ("Estoque", "Controle entradas, saldos e movimentações da operação."),
+    "Movimentações": ("Movimentações", "Registre entradas, saídas e ajustes em tempo real."),
     "Vendas": ("Vendas", "Registre vendas e acompanhe a performance comercial."),
     "Financeiro": ("Financeiro", "Controle receitas, despesas e resultados."),
     "Relatórios": ("Relatórios", "Analise e exporte informações da operação."),
+    "DRE Custos Variáveis": ("DRE de custos variáveis", "Acompanhe custo, margem, ticket médio e resultados."),
     "Importação": ("Importação de produtos", "Importe produtos em massa utilizando uma planilha CSV ou Excel."),
     "Usuários": ("Usuários", "Gerencie acessos, perfis e segurança da equipe."),
     "Auditoria": ("Auditoria", "Acompanhe acessos e operações relevantes realizadas no sistema."),
     "Configurações": ("Configurações", "Ajuste preferências e informações da empresa."),
+    "Meu perfil": ("Meu perfil", "Ajuste seus dados de acesso e preferências pessoais."),
 }
+
+SIDEBAR_ITEMS = [
+    ("Dashboard", "🏠"),
+    ("Estoque", "📦"),
+    ("Movimentações", "🔄"),
+    ("DRE Custos Variáveis", "📊"),
+    ("Relatórios", "🧾"),
+    ("Configurações", "⚙️"),
+]
 
 
 def page_header(page: str) -> None:
     title, subtitle = PAGE_META.get(page, (page, ""))
     st.markdown(f'<div class="page-header"><div><p class="page-kicker">PUMPHOUSEUP / GESTÃO</p><h1 class="page-title">{title}</h1><p class="page-subtitle">{subtitle}</p></div></div>', unsafe_allow_html=True)
+
+
+def render_sidebar_nav(current_page: str, is_admin: bool) -> None:
+    items = list(SIDEBAR_ITEMS)
+    if is_admin:
+        items.extend([("Produtos", "📦"), ("Usuários", "👥"), ("Auditoria", "🛡️")])
+    items.append(("Meu perfil", "👤"))
+
+    st.markdown('<div class="sidebar-nav">', unsafe_allow_html=True)
+    for label, icon in items:
+        button_label = f"{icon} {label}"
+        is_active = label == current_page
+        if st.button(button_label, key=f"nav_{label}", use_container_width=True, type="primary" if is_active else "secondary"):
+            st.session_state.page = label
+            st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 def empty_state(title: str, copy: str) -> None:
@@ -369,16 +447,18 @@ def login_screen() -> None:
         )
     with access:
         st.markdown('<h2>Acesso administrativo</h2><p class="login-card-copy">Entre com suas credenciais para acessar o painel de gestão da Pumphouseup.</p><p class="login-secure">Ambiente seguro</p>', unsafe_allow_html=True)
-        email = st.text_input("E-mail", placeholder="seu@email.com")
-        password = st.text_input("Senha", type="password", placeholder="Digite sua senha")
-        if st.button("Entrar no sistema", type="primary", use_container_width=True):
-            try:
-                result = call("POST", "/auth/login", json={"email": email, "password": password})
-                st.session_state.token = result["access_token"]
-                st.session_state.pop("theme", None)
-                st.rerun()
-            except RuntimeError as error:
-                st.error(str(error))
+        with st.form("login_form", clear_on_submit=False):
+            email = st.text_input("E-mail", key="login_email", placeholder="seu@email.com", autocomplete="username")
+            password = st.text_input("Senha", type="password", key="login_password", placeholder="Digite sua senha", autocomplete="current-password")
+            submitted = st.form_submit_button("Entrar no sistema", type="primary", use_container_width=True)
+            if submitted:
+                try:
+                    result = call("POST", "/auth/login", json={"email": email, "password": password})
+                    st.session_state.token = result["access_token"]
+                    st.session_state.pop("theme", None)
+                    st.rerun()
+                except RuntimeError as error:
+                    st.error(str(error))
         st.markdown('<p class="login-card-foot">Acesso restrito ao administrador da Pumphouseup.</p>', unsafe_allow_html=True)
 
 
@@ -484,6 +564,69 @@ def stock(token: str) -> None:
     st.subheader("Histórico de movimentações")
     movements = call("GET", "/stock/movements", token)
     if movements: st.dataframe(table(movements), use_container_width=True, hide_index=True)
+
+
+def movements_page(token: str) -> None:
+    page_header("Movimentações")
+    movements = call("GET", "/stock/movements", token)
+    if movements:
+        st.dataframe(table(movements), use_container_width=True, hide_index=True)
+    else:
+        empty_state("Nenhuma movimentação registrada", "Cadastre entradas, saídas ou ajustes para acompanhar o fluxo do estoque.")
+    with st.expander("Registrar movimentação", expanded=True):
+        products_data = call("GET", "/products", token)
+        if not products_data:
+            empty_state("Sem produtos para movimentar", "Cadastre produtos antes de registrar movimentações.")
+            return
+        options = {f'{item["id"]} · {item["name"]}': item["id"] for item in products_data}
+        with st.form("movement_register"):
+            product = st.selectbox("Produto", list(options))
+            qty = st.number_input("Quantidade", min_value=0.001, format="%.3f")
+            kind = st.selectbox("Tipo de movimentação", ["entry", "exit"], format_func=lambda value: "Entrada" if value == "entry" else "Saída")
+            unit_cost = st.number_input("Custo unitário", min_value=0.0, format="%.2f")
+            description = st.text_input("Observação")
+            if st.form_submit_button("Registrar movimentação", type="primary"):
+                try:
+                    payload = {"product_id": options[product], "quantity": qty, "unit_cost": unit_cost, "reason": description}
+                    if kind == "entry":
+                        call("POST", "/stock/entries", token, json=payload)
+                    else:
+                        call("POST", "/stock/adjustments", token, json={"product_id": options[product], "adjustment_type": "decrease", "quantity": qty, "reason": description})
+                    st.success("Movimentação registrada.")
+                    st.rerun()
+                except RuntimeError as error:
+                    st.error(str(error))
+
+
+def dre_page(token: str) -> None:
+    page_header("DRE Custos Variáveis")
+    try:
+        data = call("GET", "/dashboard", token)
+    except RuntimeError as error:
+        st.error(str(error)); return
+    revenue = as_float(data.get("revenue"), 0.0)
+    gross_profit = as_float(data.get("gross_profit"), 0.0)
+    margin = (gross_profit / revenue * 100) if revenue else 0.0
+    cards = [
+        ("Receita total", money(revenue)),
+        ("Lucro operacional", money(gross_profit)),
+        ("Margem de contribuição", f"{margin:.2f}%"),
+        ("Total em estoque", money(data.get("inventory_value", 0))),
+    ]
+    cols = st.columns(4)
+    for col, (label, value) in zip(cols, cards):
+        with col: metric(label, value)
+    st.divider()
+    st.subheader("Resumo do período")
+    summary = pd.DataFrame(
+        [
+            {"Indicador": "Receita total", "Valor": revenue},
+            {"Indicador": "Custo variável total", "Valor": as_float(data.get("expenses"), 0.0)},
+            {"Indicador": "Lucro bruto", "Valor": gross_profit},
+            {"Indicador": "Resultado líquido", "Valor": as_float(data.get("net_result"), 0.0)},
+        ]
+    )
+    st.dataframe(summary.assign(Valor=summary["Valor"].apply(money)), use_container_width=True, hide_index=True)
 
 
 def sales(token: str) -> None:
@@ -655,6 +798,8 @@ else:
         del st.session_state.token
         st.rerun()
     company_name, logo_source = branding()
+    if "page" not in st.session_state:
+        st.session_state.page = "Dashboard"
     theme = st.session_state.get("theme", current_user.get("theme_preference", "dark"))
     st.markdown(f'<div class="theme-marker theme-{theme}-marker"></div>', unsafe_allow_html=True)
     st.markdown(f'<div class="system-ribbon"><span class="system-ribbon-brand">{escape(company_name)}</span><span class="system-ribbon-meta"><span class="system-ribbon-version">Versão {SYSTEM_VERSION}</span><span class="system-ribbon-author">Desenvolvido por Inova Prod</span></span></div>', unsafe_allow_html=True)
@@ -666,13 +811,10 @@ else:
         if os.path.exists(LOCAL_LOGO) or isinstance(logo_source, bytes): st.image(logo_source, use_container_width=True)
         st.caption(company_name)
         st.caption("Gestão de estoque e resultado")
-        pages = ["Meu perfil"] if must_change else ["Dashboard", "Produtos", "Categorias", "Estoque", "Vendas", "Financeiro", "Relatórios", "Importação"]
-        if current_user["is_admin"]:
-            pages.extend(["Usuários", "Auditoria", "Configurações"])
-        if not must_change:
-            pages.append("Meu perfil")
-        page = st.radio("Navegação", pages, index=pages.index(st.session_state.get("page", "Dashboard")))
-        st.session_state.page = page
+        if must_change:
+            st.session_state.page = "Meu perfil"
+        else:
+            render_sidebar_nav(st.session_state.get("page", "Dashboard"), bool(current_user.get("is_admin")))
         if st.button("Sair", use_container_width=True):
             try: call("POST", "/auth/logout", st.session_state.token)
             except RuntimeError: pass
@@ -693,7 +835,21 @@ else:
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
     try:
-        pages_map = {"Dashboard": dashboard, "Produtos": products, "Categorias": categories, "Estoque": stock, "Vendas": sales, "Financeiro": finance, "Relatórios": reports, "Importação": imports, "Configurações": settings_page, "Usuários": users_page, "Auditoria": audit_page}
+        pages_map = {
+            "Dashboard": dashboard,
+            "Produtos": products,
+            "Categorias": categories,
+            "Estoque": stock,
+            "Movimentações": movements_page,
+            "Vendas": sales,
+            "Financeiro": finance,
+            "Relatórios": reports,
+            "DRE Custos Variáveis": dre_page,
+            "Importação": imports,
+            "Configurações": settings_page,
+            "Usuários": users_page,
+            "Auditoria": audit_page,
+        }
         if st.session_state.page == "Meu perfil": profile_page(st.session_state.token, current_user)
         else: pages_map[st.session_state.page](st.session_state.token)
     except RuntimeError as error:
