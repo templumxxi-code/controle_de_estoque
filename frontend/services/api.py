@@ -19,10 +19,20 @@ def call(method: str, path: str, token: str | None = None, raw: bool = False, **
         response = HTTP_SESSION.request(method, f"{API_URL}{path}", headers=headers, timeout=20, **kwargs)
     except requests.RequestException as error:
         raise RuntimeError(CONNECTION_ERROR) from error
+
     if response.status_code >= 400:
         try:
             detail = response.json().get("detail", "Erro na API")
         except ValueError:
             detail = response.text or "Erro na API"
         raise RuntimeError(detail)
-    return response.content if raw else (response.json() if response.content else None)
+
+    if raw:
+        return response.content
+    if not response.content:
+        return None
+
+    try:
+        return response.json()
+    except ValueError as error:
+        raise RuntimeError("Resposta inválida da API. Verifique se o backend está disponível e acessível.") from error
